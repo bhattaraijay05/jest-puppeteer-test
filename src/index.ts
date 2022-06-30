@@ -112,6 +112,50 @@ async function main() {
 
   await page2.screenshot({ path: screenshot });
 
+  //Click on proceed to buy
+  let proceedToBuy = await page2
+    .waitForXPath("//*/input[@name='proceedToRetailCheckout']", {
+      visible: true,
+      timeout: WAITTIME,
+    })
+    .then((el: any) => {
+      el.click();
+      console.log(colors.green("✅ Click on proceed to buy button"));
+    })
+    .catch((err: any) => {
+      console.log(colors.red("❌ Proceed to buy button is not available"));
+    });
+
+  //Click on checkout
+  let checkout = await page2
+    .waitForXPath("//*/a[@id='hlb-pt-lnk-cart']", {
+      visible: true,
+      timeout: WAITTIME,
+    })
+    .then((el: any) => {
+      el.click();
+      console.log(colors.green("✅ Click on checkout"));
+    })
+    .catch((err: any) => {
+      console.log(
+        colors.red("❌ Checkout is not available as you are not logged in")
+      );
+    });
+
+  //Click on continue
+  let continueBtn = await page2
+    .waitForXPath("//*/input[@id='continue']", {
+      visible: true,
+      timeout: WAITTIME,
+    })
+    .then((el: any) => {
+      el.click();
+      console.log(colors.green("✅ Click on continue"));
+    })
+    .catch((err: any) => {
+      console.log(colors.red("❌ Continue is not available"));
+    });
+
   await page.waitForTimeout(2000);
   await page2.close();
   await page.close();
