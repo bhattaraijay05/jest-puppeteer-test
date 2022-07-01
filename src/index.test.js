@@ -38,8 +38,8 @@ describe("Add to cart", () => {
   });
 });
 
-describe("Checkout", () => {
-  it("should checkout", async () => {
+describe("Go to Checkout Page", () => {
+  it("should be ready to go to checkout page", async () => {
     await page.click("input[name=proceedToRetailCheckout]");
     await page.waitForNavigation();
     await expect(page.title()).resolves.toContain("Amazon Sign In");
